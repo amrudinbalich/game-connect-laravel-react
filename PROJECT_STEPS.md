@@ -13,8 +13,6 @@ feature development:
 2. make controller
 3. design the UI & implement React component as a page\
 
-
-
 Project stack:
 - Laravel
 - React
