@@ -24,3 +24,11 @@ is implemented outside of this entity.
 | updated_at        | TIMESTAMP       | |
 
 ---
+
+## Possibly supported features
+
+- Follows Publishers
+- Region append
+- Preferred language
+
+> Note: These features are **planned but not yet implemented**. They are handled outside of this core entity to keep the database clean and modular.
