@@ -3,6 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import laravel from 'laravel-vite-plugin';
 import { defineConfig } from 'vite';
+import checker from 'vite-plugin-checker';
 
 export default defineConfig({
     plugins: [
@@ -20,6 +21,7 @@ export default defineConfig({
         wayfinder({
             formVariants: true,
         }),
+        checker({ typescript: true })
     ],
     esbuild: {
         jsx: 'automatic',
