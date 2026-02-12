@@ -15,10 +15,10 @@ class PublisherResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'about' => $this->about,
-            'website_url' => $this->website_url,
+            'id' => $this->resource->id,
+            'name' => $this->resource->name,
+            'about' => $this->resource->about,
+            'website_url' => $this->resource->website_url,
         ];
     }
 }

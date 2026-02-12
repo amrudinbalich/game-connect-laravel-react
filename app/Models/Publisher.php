@@ -3,11 +3,11 @@
 namespace App\Models;
 
 use App\Http\Resources\PublisherCollection;
+use App\Http\Resources\PublisherResource;
 use Illuminate\Database\Eloquent\Attributes\UseResource;
 use Illuminate\Database\Eloquent\Attributes\UseResourceCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Http\Resources\PublisherResource;
 
 #[UseResource(PublisherResource::class)]
 #[UseResourceCollection(PublisherCollection::class)]
