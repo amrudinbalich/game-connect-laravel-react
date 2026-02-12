@@ -66,6 +66,11 @@
             "@php -r \"echo \\\"\\e[32m\n\nStatic analysis running....\\e[0m\n\\\";\"",
             " ./vendor/bin/phpstan analyse --memory-limit=2G"
         ],
+        "before-push": [
+            "composer stress",
+            "npm run format && npm run lint",
+            "php artisan test"
+        ],
         "test:lint": [
             "pint --parallel --test"
         ],

@@ -51,3 +51,16 @@ I just took over one of the Laravel's starter templates, which includes followin
 This repository represents the **single source of truth** for all backend logic.  
 Frontend is decoupled through Inertia.js and can be migrated to a separate repository if needed.  
 The system is designed to scale and support additional features without major refactoring.
+
+## Code Quality
+
+This project uses static analysis & code linters in order to maintain codebase readability & quality.
+In order to ease out the process and be consistent, please before every push & PR commit pay attention to running 'before-push' command.
+
+**composer before-push** is the newly custom-added command that runs following:
+- Server code Linting(Pint) & Static Analysis (PHPStan)
+- Frontend linting & static analysis relying on **ESLint**
+- Test checking
+
+Only when all **3** commands passes successfully with **0 code**, please proceed with final commit push.
+The code shall be soonly reviewed by developer.
