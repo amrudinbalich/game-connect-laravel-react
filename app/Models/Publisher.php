@@ -7,7 +7,9 @@ use App\Http\Resources\PublisherResource;
 use Illuminate\Database\Eloquent\Attributes\UseResource;
 use Illuminate\Database\Eloquent\Attributes\UseResourceCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Games;
 
 #[UseResource(PublisherResource::class)]
 #[UseResourceCollection(PublisherCollection::class)]
@@ -26,4 +28,13 @@ class Publisher extends Model
         'about',
         'website_url',
     ];
+    
+    /**
+     * Get the games for the publisher.
+     * @return HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Games::class);
+    }
 }
