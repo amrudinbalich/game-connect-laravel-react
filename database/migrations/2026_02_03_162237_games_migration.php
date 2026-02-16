@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('player_objective')->nullable();
             $table->boolean('mature_content_warning')->default(false);
-            $table->foreignId('publisher_id')->constrained('publishers')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
