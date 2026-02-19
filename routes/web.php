@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\PublisherProfileController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -17,4 +17,4 @@ Route::get('dashboard', function () {
 
 require __DIR__.'/settings.php';
 
-Route::resource('publishers', PublisherController::class);
+Route::resource('publishers', PublisherProfileController::class);

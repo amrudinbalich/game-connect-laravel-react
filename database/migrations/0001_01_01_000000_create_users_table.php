@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone')->unique()->nullable();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('password');
+            $table->enum('type', ['player', 'publisher', 'admin'])->default('player');
             $table->rememberToken();
             $table->timestamps();
         });

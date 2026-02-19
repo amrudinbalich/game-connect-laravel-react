@@ -1,11 +1,15 @@
 <?php
 
 use App\Models\Publisher;
+use App\Models\PublisherProfile;
+use App\Models\User;
 use Inertia\Testing\AssertableInertia as Assert;
+
+const TABLE_NAME = 'publisher_profiles';
 
 // list
 test('Display a listing of the resource.', function () {
-    $firstPublisher = Publisher::factory()->count(5)->create()->first();
+    $firstPublisher = PublisherProfile::factory()->count(5)->create()->first();
     $response = $this->get('/publishers');
 
     $response->assertInertia(function (Assert $page) use ($firstPublisher) {
@@ -30,7 +34,7 @@ test('Show the form for creating a new resource.', function () {
 
 // input validation
 test('Input validation for store and update actions.', function () {
-
+    $required = ['company_name', 'summary', 'website_url'];
     $publisherResponse = $this->postJson('/publishers');
 
     // publisher
@@ -38,7 +42,7 @@ test('Input validation for store and update actions.', function () {
         ->assertStatus(422)
         ->assertJsonStructure([
             'message',
-            'errors' => ['name', 'about', 'website_url'],
+            'errors' => $required,
         ]);
 
     // update
@@ -47,7 +51,7 @@ test('Input validation for store and update actions.', function () {
         ->assertStatus(422)
         ->assertJsonStructure([
             'message',
-            'errors' => ['name', 'about', 'website_url'],
+            'errors' => $required,
         ]);
 
 });
@@ -55,16 +59,19 @@ test('Input validation for store and update actions.', function () {
 // store action
 test('Store a newly created resource in storage.', function () {
     $payload = [
-        'name' => 'My Company',
-        'about' => 'Game publisher company developing video game software.',
-        'website_url' => 'www.mycompany.com',
+        'company_name' => 'My Company',
+        'summary' => 'Game publisher company developing video game software.',
+        'website_url' => 'www.mycompany.com'
     ];
 
-    $this->assertDatabaseCount('publishers', 0);
+    $this->assertDatabaseCount('publisher_profiles', 0);
 
     $response = $this->post('/publishers', $payload);
 
-    $this->assertDatabaseHas('publishers', ['id' => 1]);
+    // dd(PublisherProfile::all());
+
+    $this->assertDatabaseHas('publisher_profiles', $payload);
+    // $this->assertDatabaseHas('users', ['id' => $payload['user_id']]);
 
     $response->assertStatus(201); // created
 });
@@ -96,8 +103,8 @@ test('Show the form for editing the specified resource.', function () {
 // edit action
 test('Update the specified resource in storage.', function () {
     $payload = [
-        'name' => 'Updated Company',
-        'about' => 'Game publisher company developing video game software.',
+        'company_name' => 'Updated Company',
+        'summary' => 'Game publisher company developing video game software.',
         'website_url' => 'www.my-updated-company.com',
     ];
 
@@ -106,8 +113,8 @@ test('Update the specified resource in storage.', function () {
     // update
     $response = $this->put("/publishers/{$publisher->id}", $payload);
 
-    $this->assertDatabaseHas('publishers', [
-        'name' => $payload['name'],
+    $this->assertDatabaseHas(TABLE_NAME, [
+        'company_name' => $payload['name'],
     ]);
 
     $response->assertStatus(200);

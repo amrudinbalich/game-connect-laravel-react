@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publishers', function (Blueprint $table) {
+        // all fields are optionable
+        Schema::create('publisher_profiles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->text('about')->nullable();
+            $table->string('company_name')->nullable(); // picks user.name by default
+            $table->text('summary')->nullable();
             $table->string('website_url')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publishers');
+        Schema::dropIfExists('publisher_profiles');
     }
 };

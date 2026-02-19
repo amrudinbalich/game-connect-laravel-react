@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PublisherResource extends JsonResource
+class PublisherProfileResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,9 @@ class PublisherResource extends JsonResource
     {
         return [
             'id' => $this->resource->id,
-            'name' => $this->resource->name,
-            'about' => $this->resource->about,
-            'website_url' => $this->resource->website_url,
+            'company_name' => $this->resource->company_name,
+            'summary' => $this->resource->real_name,
+            'website_url' => $this->resource->website_url
         ];
     }
 }
