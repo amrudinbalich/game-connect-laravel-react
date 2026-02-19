@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PublisherRequest extends FormRequest
+class StorePublisherProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class PublisherRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:2|max:50',
-            'about' => 'required|string|min:10|max:500',
-            'website_url' => 'required|string|max:255',
+            'company_name' => 'required|string|min:2|max:50',
+            'summary' => 'required|string|min:10|max:500',
+            'website_url' => 'required|string|max:255'
         ];
     }
 }
