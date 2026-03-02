@@ -15,9 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
-            $table->string('licence_key')->unique();
-            $table->unique(columns: ['user_id', 'game_id']);
-            $table->timestamp('purchased_at')->useCurrent();
             $table->timestamps();
         });
     }
